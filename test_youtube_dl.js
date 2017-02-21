@@ -3,34 +3,33 @@ var input = "https://www.youtube.com/watch?v=0kdbu8RZNaY";
 
 // lib
 var youtubedl = require('youtube-dl');
+
 // fs
 var fs = require('fs');
 
+// ffmpeg
 var ffmpeg = require('fluent-ffmpeg');
-
-var sanitize = require("sanitize-filename");
 
 youtubedl.getInfo(input, function(err, info) {
   if (err) throw err;
 
   // output
-  var output = info._filename.replace(/[&\/\\#,+()$~%'":*?<>{}\ ]/g, "_");
-  output = sanitize(output);
+  var video_output = info._filename.replace(/[&\/\\#,+()$~%'":*?<>{}\ ]/g, "_");
   
-  var file_title = info.title;
+  var audio_title = info.title;
+  audio_title = audio_title.replace(/[&\/\\#,+()$~%'":*?<>{}\ ]/g, "_");
   
   // dl zero
   var downloaded = 0;
 
   // fs file exist sync
-  // output
-  if (fs.existsSync(output)) {
+  if (fs.existsSync(video_output)) {
     // download
     // fs 
     // stat sync
     // output
     // .size
-    downloaded = fs.statSync(output).size;
+    downloaded = fs.statSync(video_output).size;
   }  
 
 
@@ -50,7 +49,7 @@ youtubedl.getInfo(input, function(err, info) {
     // start, downloaded, where video should start
     // cwd, __dirname
     // start will be sent as a range header
-    { start: downloaded, cwd: __dirname });
+    { start: downloaded, cwd: __dirname + "/video" });
 
   
   // video on
@@ -61,7 +60,7 @@ youtubedl.getInfo(input, function(err, info) {
     // start
     console.log('Download started');
     // file name
-    console.log('filename: ' + output);
+    console.log('filename: ' + video_output);
 
     // total size
     // + what ever size
@@ -90,7 +89,7 @@ youtubedl.getInfo(input, function(err, info) {
   // video name
   // flag
   // append
-  video.pipe(fs.createWriteStream(output, { flags: 'a' }));
+  video.pipe(fs.createWriteStream("./video/" + video_output, { flags: 'a' }));
   
 
   // video on
@@ -98,7 +97,7 @@ youtubedl.getInfo(input, function(err, info) {
   // Will be called if download was already completed and there is nothing more to download.
   video.on('complete', function complete(info) {
     'use strict';
-    console.log('filename: ' + output + ' already downloaded.');
+    console.log('filename: ' + video_output + ' already downloaded.');
   });
 
   // video
@@ -108,10 +107,10 @@ youtubedl.getInfo(input, function(err, info) {
     console.log('finished downloading! start to convert to mp3');
     
     // https://codedump.io/share/KVSJfXwwlRSI/1/nodejs--how-to-pipe---youtube-to-mp4-to-mp3
-    var proc = new ffmpeg({source: output});
+    var proc = new ffmpeg({source: "./video/" + video_output});
 
     proc.setFfmpegPath('/usr/bin/ffmpeg');
-    proc.saveToFile("./" + file_title + ".mp3", function(stdout, stderr) {
+    proc.saveToFile("./audio/" + audio_title + ".mp3", function(stdout, stderr) {
       console.log("done");
     });
     
