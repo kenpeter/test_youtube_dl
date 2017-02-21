@@ -8,12 +8,15 @@ var fs = require('fs');
 
 var ffmpeg = require('fluent-ffmpeg');
 
+var sanitize = require("sanitize-filename");
 
 youtubedl.getInfo(input, function(err, info) {
   if (err) throw err;
 
   // output
   var output = info._filename.replace(/[&\/\\#,+()$~%'":*?<>{}\ ]/g, "_");
+  output = sanitize(output);
+  
   var file_title = info.title;
   
   // dl zero
