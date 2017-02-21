@@ -1,0 +1,9 @@
+{
+  "name": "test_youtube_dl",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "youtube-dl": "^1.11.1"
+  }
+}
