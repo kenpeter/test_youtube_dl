@@ -321,3 +321,15 @@
   width: 640 }
 WARNING: unable to extract uploader nickname
 
+
+
+
+User already exist
+[ { _id: 58ad7f98fe250d41634e5167,
+    userURL: 'http://www.youtube.com/user/Naturalistick',
+    __v: 0 } ]
+
+
+
+
+

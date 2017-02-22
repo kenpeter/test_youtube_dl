@@ -162,14 +162,94 @@ youtubedl_get_info().then(function(infos) {
         proc.on('end', function () {
           console.log("----- mp3 done! -----");
           
-          // so we assign info to db
-          //console.log(info);
           
-          // user obj
-          var userObj = new UserModel({
-            userURL: info.uploader_url
+          // https://stackoverflow.com/questions/16882938/how-to-check-if-that-data-already-exist-in-the-database-during-update-mongoose
+          UserModel.find({ userURL: info.uploader_url }, function (err, userDoc) {
+            if(userDoc.length){
+              console.log("User already exists");
+              var userId = userDoc[0]._id;
+              //console.log(userId);
+              
+              // now check VideoModel
+              VideoModel.find({ id: info.id }, function(err, videoDoc) {
+                // has video
+                if(videoDoc.length) {
+                  console.log("Video already exists");
+                  
+                  // !!!!!!!!!!!!!!!!!!!!!!!!!!!
+                  resolve();
+                }
+                else {
+                  // create new video
+                  var videoObj = new VideoModel({
+                    id: info.id,
+                    duration: info.duration,
+                    fulltitle: info.fulltitle,
+                    view_count: info.view_count,
+                    
+                    description: info.description,
+                    thumbnail: info.thumbnail,
+                    url: info.url,
+                    
+                    user_id: userId
+                  });
+                  
+                  // video obj save
+                  videoObj.save(function(err, videoObj){
+                    console.log("user and video data saved");
+                    console.log();
+                  
+                    // !!!!!!!!!!!!!!!!!
+	                  resolve();
+                  });
+                  
+                  
+                }
+                
+              });
+              
+            }
+            else {
+              // user obj
+              var userObj = new UserModel({
+                userURL: info.uploader_url
+              });
+              
+              // save
+              userObj.save(function (err, userObj) {
+              
+                // video obj, don't check video
+                var videoObj = new VideoModel({
+                  id: info.id,
+                  duration: info.duration,
+                  fulltitle: info.fulltitle,
+                  view_count: info.view_count,
+                  
+                  description: info.description,
+                  thumbnail: info.thumbnail,
+                  url: info.url,
+                  
+                  user_id: userObj._id
+                });
+                
+                // video obj save
+                videoObj.save(function(err, videoObj){
+                  console.log("user and video data saved");
+                  console.log();
+                
+                  // !!!!!!!!!!!!!!!!!
+	                resolve();
+                })
+              
+              });
+              
+            }
+            
+              
           });
           
+          
+          /*
           // user obj save
           userObj.save(function (err, userObj) {
           
@@ -189,12 +269,15 @@ youtubedl_get_info().then(function(infos) {
             
             // video obj save
             videoObj.save(function(err, videoObj){
+              console.log("user and video data saved");
+              console.log();
+            
               // !!!!!!!!!!!!!!!!!
 	            resolve();
             })
               
           });
-          
+          */
           
           
         });
