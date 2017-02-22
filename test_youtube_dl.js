@@ -34,13 +34,10 @@ function youtubedl_get_info() {
 }
 
 youtubedl_get_info().then(function(infos) {
-  //console.log(infos);
   
   // info is array
   // http://bluebirdjs.com/docs/api/promise.each.html
   Promise.each(infos, function(info) {
-  
-    //console.log(info);
   
     // return new promise
     return new Promise(function(resolve, reject) {
@@ -56,11 +53,6 @@ youtubedl_get_info().then(function(infos) {
       
       // fs file exist sync
       if (fs.existsSync(video_output)) {
-        // download
-        // fs 
-        // stat sync
-        // output
-        // .size
         downloaded = fs.statSync(video_output).size;
       }
       
@@ -94,10 +86,8 @@ youtubedl_get_info().then(function(infos) {
       
       video.on('end', function() {
         console.log('Finished downloading! start to convert to mp3');
-        resolve();
         
         // It seems I cannot do more async here.
-        /*
         // https://codedump.io/share/KVSJfXwwlRSI/1/nodejs--how-to-pipe---youtube-to-mp4-to-mp3
         var proc = new ffmpeg({source: "./video/" + video_output});
 
@@ -105,10 +95,9 @@ youtubedl_get_info().then(function(infos) {
         proc.saveToFile("./audio/" + audio_title + ".mp3", function(stdout, stderr) {
           console.log("----- done -----");
           
-          // Need to resolve......!!!!!!!!!!!!!!!!!
+          // Why I never come here??????????????????????????????????
           resolve();
         });
-        */
         
       });
 
