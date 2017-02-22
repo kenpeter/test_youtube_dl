@@ -1,5 +1,8 @@
 // input
-var input = "https://www.youtube.com/watch?v=0kdbu8RZNaY";
+var input = [
+  "https://www.youtube.com/watch?v=YWZ7KtRSoAo",
+  "https://www.youtube.com/watch?v=0kdbu8RZNaY"
+];
 
 // lib
 var youtubedl = require('youtube-dl');
@@ -10,7 +13,74 @@ var fs = require('fs');
 // ffmpeg
 var ffmpeg = require('fluent-ffmpeg');
 
+// Promise
+var Promise = require("bluebird");
+
+
+// https://www.promisejs.org/
+function youtubedl_get_info() {
+  return new Promise(function (resolve, reject){
+    youtubedl.getInfo(input, function(err, info) {
+      if (err) {
+        reject(err);
+      }  
+      else
+      {
+        //console.log(info);
+        resolve(info); 
+      }  
+    });    
+  });
+}
+
+youtubedl_get_info().then(function(infos){
+  //console.log(infos);
+  
+  // info is array
+  // http://bluebirdjs.com/docs/api/promise.each.html
+  Promise.each(infos, function(info) {
+  
+    //console.log(info);
+  
+    // return new promise
+    return new Promise(function(resolve, reject) {
+      
+      // output
+      var video_output = info._filename.replace(/[&\/\\#,+()$~%'":*?<>{}\ ]/g, "_");
+      
+      var audio_title = info.title;
+      audio_title = audio_title.replace(/[&\/\\#,+()$~%'":*?<>{}\ ]/g, "_");
+      
+      // dl zero
+      var downloaded = 0;
+      
+      // fs file exist sync
+      if (fs.existsSync(video_output)) {
+        // download
+        // fs 
+        // stat sync
+        // output
+        // .size
+        downloaded = fs.statSync(video_output).size;
+      }
+      
+      //test
+      console.log(video_output);
+      
+      // Need to resolve......
+      resolve();
+         
+    });
+    
+  });
+  
+});
+
+
+
+/*
 youtubedl.getInfo(input, function(err, info) {
+  // error
   if (err) throw err;
 
   // output
@@ -118,7 +188,7 @@ youtubedl.getInfo(input, function(err, info) {
   
   
 });
-
+*/
 
 
 
