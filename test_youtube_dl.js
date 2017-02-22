@@ -85,19 +85,41 @@ youtubedl_get_info().then(function(infos) {
 
       
       video.on('end', function() {
-        console.log('Finished downloading! start to convert to mp3');
+        console.log('Finished downloading! Start to convert to mp3');
         
-        // It seems I cannot do more async here.
+        // https://stackoverflow.com/questions/42382561/how-to-resolve-this-promise-when-converting-to-mp3-is-completed-fluent-ffmpeg
+        // https://github.com/fluent-ffmpeg/node-fluent-ffmpeg#savefilename-save-the-output-to-a-file
         // https://codedump.io/share/KVSJfXwwlRSI/1/nodejs--how-to-pipe---youtube-to-mp4-to-mp3
         var proc = new ffmpeg({source: "./video/" + video_output});
 
+        // set
         proc.setFfmpegPath('/usr/bin/ffmpeg');
+        
+        // proc output
+        proc.output("./audio/" + audio_title + ".mp3");
+        
+        // proc on error
+        proc.on('error', function (err) {
+	        console.log(err);
+        });
+
+        // end
+        proc.on('end', function () {
+          console.log("----- done -----");
+	        resolve();
+        });
+
+        // now run
+        proc.run();
+        
+        /*
         proc.saveToFile("./audio/" + audio_title + ".mp3", function(stdout, stderr) {
           console.log("----- done -----");
           
           // Why I never come here??????????????????????????????????
           resolve();
         });
+        */
         
       });
 
