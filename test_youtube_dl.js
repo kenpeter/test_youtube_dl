@@ -1,22 +1,22 @@
 // input
 var input = [
+  /*
   "https://www.youtube.com/watch?v=WLXQ2QUniPk&index=16&list=PLJ2tKmKnKST36xQtJ7P3pj5MOVk89zHhw",
   "https://www.youtube.com/watch?v=kmgjetpVLhw&index=2&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=FF-tx8HJEqc&index=3&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=xS4fMO_-gWE&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh&index=4",
+  */
   
-  /*
   "https://www.youtube.com/watch?v=YEeElCMX2vE&index=7&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=hyc_kAK9Arg&index=9&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=Z6Lh40hK--8&index=11&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=yYRj1rfDBLQ&index=12&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  */
-  
-  /*
   "https://www.youtube.com/watch?v=meknfgOfQgU&index=25&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=xUXF8HjAg58&index=37&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
+  
+  /*
   "https://www.youtube.com/watch?v=SDsqrhy-tlE&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh&index=39",
-  "https://www.youtube.com/watch?v=UyArD0GKC2U"
+  "https://www.youtube.com/watch?v=UyArD0GKC2U",
   */
   
 ];
@@ -33,36 +33,15 @@ var ffmpeg = require('fluent-ffmpeg');
 // Promise
 var Promise = require("bluebird");
 
+//
+var VideoModel = require("./model/Video");
+
+//
+var UserModel = require("./model/User");
+
 // mongoose
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test_youtube_dl');
-
-
-// http://mongoosejs.com/docs/schematypes.html
-var videoSchema = mongoose.Schema({
-  id: String,
-  duration: String,
-  fulltitle: String,
-  view_count: Number,
-  
-  description: String,
-  thumbnail: String,
-  url: String,
-  
-  user_id: mongoose.Schema.Types.ObjectId // schema, types obj id
-});
-
-//
-var userSchema = mongoose.Schema({
-  userURL: String
-});
-
-// model
-var VideoModel = mongoose.model('VideoModel', videoSchema);
-
-// model
-var UserModel = mongoose.model('UserModel', userSchema);
-
 
 // db
 var db = mongoose.connection;
