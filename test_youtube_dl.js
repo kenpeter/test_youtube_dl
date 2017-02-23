@@ -7,17 +7,17 @@ var input = [
   "https://www.youtube.com/watch?v=xS4fMO_-gWE&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh&index=4",
   */
   
+  /*
   "https://www.youtube.com/watch?v=YEeElCMX2vE&index=7&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=hyc_kAK9Arg&index=9&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=Z6Lh40hK--8&index=11&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=yYRj1rfDBLQ&index=12&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=meknfgOfQgU&index=25&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
   "https://www.youtube.com/watch?v=xUXF8HjAg58&index=37&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
+  */
   
-  /*
   "https://www.youtube.com/watch?v=SDsqrhy-tlE&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh&index=39",
   "https://www.youtube.com/watch?v=UyArD0GKC2U",
-  */
   
 ];
 
@@ -73,7 +73,7 @@ youtubedl_get_info().then(function(infos) {
   
   // info is array
   // http://bluebirdjs.com/docs/api/promise.each.html
-  Promise.each(infos, function(info) {
+  return Promise.each(infos, function(info) {
   
     // return new promise
     return new Promise(function(resolve, reject) {
@@ -240,40 +240,8 @@ youtubedl_get_info().then(function(infos) {
               });
               
             }
-            
-              
-          });
-          
-          
-          /*
-          // user obj save
-          userObj.save(function (err, userObj) {
-          
-            // video obj
-            var videoObj = new VideoModel({
-              id: info.id,
-              duration: info.duration,
-              fulltitle: info.fulltitle,
-              view_count: info.view_count,
-              
-              description: info.description,
-              thumbnail: info.thumbnail,
-              url: info.url,
-              
-              user_id: userObj._id
-            });
-            
-            // video obj save
-            videoObj.save(function(err, videoObj){
-              console.log("user and video data saved");
-              console.log();
-            
-              // !!!!!!!!!!!!!!!!!
-	            resolve();
-            })
-              
-          });
-          */
+               
+          }); 
           
           
         });
@@ -289,6 +257,10 @@ youtubedl_get_info().then(function(infos) {
     
   });
   
+})
+.then(function(){
+  console.log("-- all done --");
+  process.exit();
 });
 
 
