@@ -21,7 +21,7 @@ exec("adb start-server", puts);
 //
 console.log("\nwait for 8s\n");
 
-var audio_path = "/var/www/html/test/testme/test_youtube_dl/audio";
+var audio_path = __dirname + "/audio";
 
 // https://stackoverflow.com/questions/32604656/what-is-the-glob-character
 setTimeout(
