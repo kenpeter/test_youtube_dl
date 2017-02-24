@@ -6,7 +6,9 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "fluent-ffmpeg": "^2.1.0",
+    "glob": "^7.1.1",
     "mongoose": "^4.8.4",
+    "randomstring": "^1.1.5",
     "sanitize-filename": "^1.6.1",
     "youtube-dl": "^1.11.1"
   }
