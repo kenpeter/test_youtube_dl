@@ -11,7 +11,9 @@ var videoSchema = mongoose.Schema({
   thumbnail: String,
   url: String,
   
-  user_id: mongoose.Schema.Types.ObjectId // schema, types obj id
+  user_id: mongoose.Schema.Types.ObjectId, // schema, types obj id
+  create_at: { type: Date, default: Date.now },
+  update_at: { type: Date, default: Date.now }
 });
 
 // not export default like react
