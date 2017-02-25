@@ -2,35 +2,11 @@
 
 // input
 var input = [
-  "https://www.youtube.com/watch?v=C-eHiGqKsVY&list=PL5NkwhWJzVESbr6is7BYBwUuaJwMkuT-g&index=4",
-  "https://www.youtube.com/watch?v=DrilFGojVFE&index=5&list=PL5NkwhWJzVESbr6is7BYBwUuaJwMkuT-g",
-  
-  /*
-  "https://www.youtube.com/watch?v=YT0jKIOG0CA&index=1&list=PL5NkwhWJzVESbr6is7BYBwUuaJwMkuT-g",
-  "https://www.youtube.com/watch?v=uuAPN1Jzi9Y&list=PL5NkwhWJzVESbr6is7BYBwUuaJwMkuT-g&index=2",
-  "https://www.youtube.com/watch?v=dmnAmk022LY&index=3&list=PL5NkwhWJzVESbr6is7BYBwUuaJwMkuT-g",
-  */
-
-  /*
-  "https://www.youtube.com/watch?v=WLXQ2QUniPk&index=16&list=PLJ2tKmKnKST36xQtJ7P3pj5MOVk89zHhw",
-  "https://www.youtube.com/watch?v=kmgjetpVLhw&index=2&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  "https://www.youtube.com/watch?v=FF-tx8HJEqc&index=3&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  "https://www.youtube.com/watch?v=xS4fMO_-gWE&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh&index=4",
-  */
-  
-  /*
-  "https://www.youtube.com/watch?v=YEeElCMX2vE&index=7&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  "https://www.youtube.com/watch?v=hyc_kAK9Arg&index=9&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  "https://www.youtube.com/watch?v=Z6Lh40hK--8&index=11&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  "https://www.youtube.com/watch?v=yYRj1rfDBLQ&index=12&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  "https://www.youtube.com/watch?v=meknfgOfQgU&index=25&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  "https://www.youtube.com/watch?v=xUXF8HjAg58&index=37&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh",
-  */
-
-	/*  
-  "https://www.youtube.com/watch?v=SDsqrhy-tlE&list=PLjhqCt0l2InJx7Ys8-YCH4o5xxU_1eQFh&index=39",
-  "https://www.youtube.com/watch?v=UyArD0GKC2U",
-  */
+  "https://www.youtube.com/watch?v=fhx1KkleRDI",
+  "https://www.youtube.com/watch?v=TA3RsQiDFcw",
+  "https://www.youtube.com/watch?v=ATR96oK6f0A",
+  "https://www.youtube.com/watch?v=MIlEr8CsrQ0",
+  "https://www.youtube.com/watch?v=4i7mGJ6WAZM",
 ];
 
 // lib
