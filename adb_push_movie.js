@@ -19,7 +19,7 @@ exec("adb start-server", puts);
 //
 console.log("\nwait for 8s\n");
 
-var file_path = "/home/kenpeter/Videos/4K\ Video\ Downloader";
+var file_path = "/home/kenpeter/Videos/kid";
 //var file_path = __dirname + "/video";
 
 // https://stackoverflow.com/questions/32604656/what-is-the-glob-character
