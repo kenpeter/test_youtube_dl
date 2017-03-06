@@ -2,11 +2,15 @@
 
 // input
 var input = [
-  "https://www.youtube.com/watch?v=fhx1KkleRDI",
-  "https://www.youtube.com/watch?v=TA3RsQiDFcw",
-  "https://www.youtube.com/watch?v=ATR96oK6f0A",
-  "https://www.youtube.com/watch?v=MIlEr8CsrQ0",
-  "https://www.youtube.com/watch?v=4i7mGJ6WAZM",
+	/*
+	"https://www.youtube.com/watch?v=_X78XfQkLk0",
+	"https://www.youtube.com/watch?v=XPb90apz5ac&t=4s",
+	"https://www.youtube.com/watch?v=gqbyzS8KoSk&t=798s",
+	"https://www.youtube.com/watch?v=lCj0A48MV8A&t=332s",
+	*/
+
+	"https://www.youtube.com/watch?v=1vPNWctEGPU",
+	"https://www.youtube.com/watch?v=VdFD2hy7kFM",
 ];
 
 // lib
@@ -92,7 +96,11 @@ youtubedl_get_info().then(function(infos) {
         // format
         ['--format=18'],
         // start that download
-        { start: downloaded, cwd: __dirname + "/video" }
+        { 
+					start: downloaded, 
+					cwd: __dirname + "/video",
+					maxBuffer: Infinity 
+				}
       );
 
       // video info
